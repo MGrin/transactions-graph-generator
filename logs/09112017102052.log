@@ -1,0 +1,42 @@
+09/11/2017 10:20:52: Steps to execute: {'transactions', 'edges', 'nodes', 'patterns'}
+09/11/2017 10:20:52: 
+09/11/2017 10:20:52: ------------##############------------
+09/11/2017 10:20:52: Generating nodes
+09/11/2017 10:20:52: 0 ATM of 1 are generated
+09/11/2017 10:20:52: TOTAL ATM of 1 are generated
+09/11/2017 10:20:52: 0 Company of 3 are generated
+09/11/2017 10:20:52: TOTAL Company of 3 are generated
+09/11/2017 10:20:52: 0 Client of 100 are generated
+09/11/2017 10:20:52: TOTAL Client of 100 are generated
+09/11/2017 10:20:52: 
+09/11/2017 10:20:52: ------------##############------------
+09/11/2017 10:20:52: Generating edges
+09/11/2017 10:20:52: Loading clients...
+09/11/2017 10:20:52: Loading companies...
+09/11/2017 10:20:52: Loading atms...
+09/11/2017 10:20:52: client->client: Source node number 1, number of edges: 0
+09/11/2017 10:20:52: client->client ### TOTAL number of edges 49
+09/11/2017 10:20:52: client->atm: Source node number 1, number of edges: 0
+09/11/2017 10:20:52: client->atm ### TOTAL number of edges 39
+09/11/2017 10:20:52: company->client: Source node number 1, number of edges: 0
+09/11/2017 10:20:52: client->company: Source node number 1, number of edges: 0
+09/11/2017 10:20:52: company->client ### TOTAL number of edges 0
+09/11/2017 10:20:52: client->company ### TOTAL number of edges 2
+09/11/2017 10:20:52: 
+09/11/2017 10:20:52: ------------##############------------
+09/11/2017 10:20:52: Generating transactions
+09/11/2017 10:20:52: transaction(client->*): generating transactions for source node 1, transaction count: 0
+09/11/2017 10:20:52: transaction(company->client): generating transactions for source node 1, transaction count: 0
+09/11/2017 10:20:52: transaction(company->client): TOTAL: generating transactions for source node 3, transaction count: 0
+09/11/2017 10:20:52: transaction(client->*): TOTAL: generating transactions for source node 100, transaction count: 255
+09/11/2017 10:20:52: 
+09/11/2017 10:20:52: ------------##############------------
+09/11/2017 10:20:52: Generating patterns
+09/11/2017 10:20:52: Loading clients...
+09/11/2017 10:20:52: Loading companies...
+09/11/2017 10:20:52: Flow patterns: Number of patterns to be generated: 4
+09/11/2017 10:20:52: Circular patterns: Number of patterns to be generated: 5
+09/11/2017 10:20:52: Time patterns: Number of patterns to be generated: 7
+09/11/2017 10:20:52: Circular patterns: TOTAL Generated 15 patterns with 106 transactions in total
+09/11/2017 10:20:52: Time patterns: TOTAL Generated 21 patterns with 783 transactions in total
+09/11/2017 10:20:52: Flow patterns: TOTAL Generated 12 patterns with 464 transactions in total
