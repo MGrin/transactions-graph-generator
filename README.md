@@ -1,5 +1,5 @@
 # TRANSACTIONS-GRAPH-GENERATOR
-`Before starting, please manually create folders data and output in the root of the repo`
+`Before starting, please manually create folders data, output and log in the root of the repo`
 
 A big graph generator for transactions graph. As output you'll get:
 * a csv with transactions
