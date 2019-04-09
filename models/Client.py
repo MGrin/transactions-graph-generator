@@ -1,10 +1,10 @@
-from mimesis import Personal, Address
+from mimesis import Person, Address
 from random import random
 from uuid import uuid4
 from .Node import Node
 
 class Client(Node):
-	_person = Personal()
+	_person = Person()
 	_adresss = Address()
 
 	def __init__(self):
@@ -28,4 +28,3 @@ class Client(Node):
 		self.postal_code = self._adresss.postal_code()
 		self.country = self._adresss.country()
 		self.city = self._adresss.city()
-		

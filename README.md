@@ -18,9 +18,14 @@ To merge these files into 4 well defined csv, you have to run the transformation
 This will put 4 csv files concatenated by type, with randomized transactions (not to have them one after another, for example for patterns all transactions of one pattern follow each other before that script and are randomized after).
 
 # How to use
+## Installation
+* You'll need `pipenv` installed
+* `pipenv install`
+* `mkdir -p data output logs`
+
 ## Config-less
 ```
-./generateGraph 100
+pipenv run python generateGraph 100
 
 ./sctipts/transform.sh
 ```
@@ -29,12 +34,12 @@ Will generate a graph with 100 clients, 1 ATM and 2 companies.  Number of transa
 ## Config-full
 All configurations are described in `generateGraph.py` file
 ```
-./generateGraph --data=./myOwnFolder --props=0.01,0.001,0.03,0.005 --steps=nodes,edges,transactions,patterns --batch-size=5000 10000
+pipenv run python --data=./myOwnFolder --probs=0.01,0.001,0.03,0.005 --steps=nodes,edges,transactions,patterns --batch-size=5000 10000
 
 ./scripts/transform.sh
 ```
 * `--data` : folder to store generated data
-* `--props` : list of connection creation probabilities. Format: client-client,client-company,client-atm,company-client
+* `--probs` : list of connection creation probabilities. Format: client-client,client-company,client-atm,company-client
 * `--steps` : Steps to do. possible values (comma - separated): nodes, edges, transactions, patterns. Should be ordered (transaction swill not be generated before edges, for example)
 * `--batch-size` : While generating, data is written to disk by batches of given size. An element in a batch is a line in CSV file. Also, batch size controls frequency of logs. More batch size is more memory you need (will be used to store generated data) but should work faster (in theory, not in practice :))
 

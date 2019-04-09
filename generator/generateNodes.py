@@ -24,14 +24,14 @@ def __generateModel(count, file, header, Model, modelname, batchSize, verbose=Tr
 			batch.append(c.toRow(header))
 
 			if verbose and i % batchSize == 0:
-				log(str(i) + ' ' + modelname + ' of ' + str(count) + ' are generated');
+				log(str(i) + ' ' + modelname + ' of ' + str(count) + ' are generated')
 
 			if len(batch) > batchSize:
 				writeBatch(file, batch)
 				batch = []
 
 		writeBatch(file, batch)
-		log('TOTAL ' + modelname + ' of ' + str(count) + ' are generated');
+		log('TOTAL ' + modelname + ' of ' + str(count) + ' are generated')
 
 def generateNodes(files, counts, batchSize):
 	clientsProcess = threading.Thread(target=lambda : __generateModel(

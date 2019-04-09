@@ -8,11 +8,10 @@ def int2str(val):
   return str(val)
 
 def __updateCurrentDate(date, delays):
-  currentDate = date.split('/')
-  val = int(currentDate[1]) + delays['days']
+  val = int(date.month) + delays['days']
   if val < 28:
-    currentDate[1] = int2str(val)
-  currentDate = '/'.join(currentDate)
+    date.setMonth(int2str(val))
+  currentDate = date
   return currentDate
 
 def __updateCurrentTime(time, delays):
