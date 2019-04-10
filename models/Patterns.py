@@ -1,5 +1,6 @@
 from .Transaction import Transaction
 from random import randint, random
+from datetime import timedelta
 
 transactionsHeader = ['id', 'source', 'target', 'date', 'time', 'amount', 'currency']
 
@@ -8,27 +9,21 @@ def int2str(val):
   return str(val)
 
 def __updateCurrentDate(date, delays):
-  val = int(date.month) + delays['days']
-  if val < 28:
-    date.setMonth(int2str(val))
-  currentDate = date
-  return currentDate
+  return date + timedelta(days=delays['days'])
 
 def __updateCurrentTime(time, delays):
-  currentTime = time.split(':')
-  hval = int(currentTime[0]) + delays['hours']
-  mval = int(currentTime[1]) + delays['minutes']
-  sval = int(currentTime[2]) + delays['seconds']
+  hval = int(time.hour) + delays['hours']
+  mval = int(time.minute) + delays['minutes']
+  sval = int(time.second) + delays['seconds']
 
   if hval < 24:
-    currentTime[0] = int2str(hval)
+    time.replace(hour=hval)
   if mval < 60:
-    currentTime[1] = int2str(mval)
+    time.replace(minute=mval)
   if sval < 60:
-    currentTime[2] = int2str(sval)
-  currentTime = ':'.join(currentTime)
+    time.replace(second=sval)
 
-  return currentTime
+  return time
 
 def __generateDelays():
   return {

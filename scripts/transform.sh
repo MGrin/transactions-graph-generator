@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm output/{atms,clients,companies,transactions}.csv
+rm -f output/{atms,clients,companies,transactions}.csv
 
 echo "id,source,target,date,time,amount,currency" >> output/transactions.csv
 

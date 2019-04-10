@@ -16,7 +16,7 @@ class Transaction(Node):
 		self.id = uuid4()
 		self.source = sourceId
 		self.target = targetId
-		self.date = self._datetime.date(start=2015, end=2017)
+		self.date = self._datetime.date(start=2015, end=2019)
 		self.time = self._datetime.time()
 
 		if random() < 0.05:
@@ -24,6 +24,6 @@ class Transaction(Node):
 		self.amount = npr.exponential(10)
 
 		if random() < 0.15:
-			self.currency = self._business.currency_iso()
+			self.currency = self._business.currency_iso_code()
 		else:
 			self.currency = None
