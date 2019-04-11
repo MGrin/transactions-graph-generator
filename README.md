@@ -34,7 +34,7 @@ Will generate a graph with 100 clients, 1 ATM and 2 companies.  Number of transa
 ## Config-full
 All configurations are described in `generateGraph.py` file
 ```
-pipenv run python --data=./myOwnFolder --probs=0.01,0.001,0.03,0.005 --steps=nodes,edges,transactions,patterns --batch-size=5000 10000
+pipenv run python generateGraph.py --data=./myOwnFolder --probs=0.01,0.001,0.03,0.005 --steps=nodes,edges,transactions,patterns --batch-size=5000 10000
 
 ./scripts/transform.sh
 ```
