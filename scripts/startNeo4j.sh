@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Purpose of this script:
+# 1. Import files to neo4j
+# 2. Start neo4j instance
+
 if [ $# -eq 0 ]
   then
     echo "Provide path to data folder"
