@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Purpose of this script:
+# 1. Shuffle transactions and store them in one .csv file
+# 2. Copy 4 .csv files into output folder
+
 if [ $# -eq 0 ]
   then
     echo "Provide path to data folder"
@@ -8,7 +12,7 @@ fi
 
 DATA_DIR="$1"
 TIMESTAMP=`basename $DATA_DIR`
-OUTPUT_DIR=$PWD/output/$TIMESTAMP
+OUTPUT_DIR=$PWD/output/csv/$TIMESTAMP
 
 rm -rf $OUTPUT_DIR
 mkdir -p $OUTPUT_DIR

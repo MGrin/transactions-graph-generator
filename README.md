@@ -28,8 +28,6 @@ This will put 4 csv files concatenated by type, with randomized transactions (no
 ## Config-less
 ```
 pipenv run python generateGraph 100
-
-./sctipts/transform.sh
 ```
 Will generate a graph with 100 clients, 1 ATM and 2 companies.  Number of transactions is following a given distribution (look code to know more)
 
@@ -37,13 +35,15 @@ Will generate a graph with 100 clients, 1 ATM and 2 companies.  Number of transa
 All configurations are described in `generateGraph.py` file
 ```
 pipenv run python --data=./myOwnFolder --probs=0.01,0.001,0.03,0.005 --steps=nodes,edges,transactions,patterns --batch-size=5000 10000
-
-./scripts/transform.sh
 ```
 * `--data` : folder to store generated data
 * `--probs` : list of connection creation probabilities. Format: client-client,client-company,client-atm,company-client
 * `--steps` : Steps to do. possible values (comma - separated): nodes, edges, transactions, patterns. Should be ordered (transaction swill not be generated before edges, for example)
 * `--batch-size` : While generating, data is written to disk by batches of given size. An element in a batch is a line in CSV file. Also, batch size controls frequency of logs. More batch size is more memory you need (will be used to store generated data) but should work faster (in theory, not in practice :))
+
+# Transformation scripts
+There is a couple of transformation scripts that transform generated data into something more usefull:
+* output2csv.sh - shuffles all transactions and concats them into one file. As a result you'll get 4 csv files with atms, clients, companies and transactions
 
 # Data and Patterns
 ## Client
