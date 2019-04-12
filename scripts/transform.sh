@@ -1,15 +1,26 @@
 #!/bin/bash
 
-rm -f output/{atms,clients,companies,transactions}.csv
+if [ $# -eq 0 ]
+  then
+    echo "Provide path to data folder"
+    exit 1
+fi
 
-echo "id,source,target,date,time,amount,currency" >> output/transactions.csv
+DATA_DIR="$1"
+TIMESTAMP=`basename $DATA_DIR`
+OUTPUT_DIR=$PWD/output/$TIMESTAMP
 
-perl -MList::Util=shuffle -e 'print shuffle(<STDIN>);' < data/nodes.transactions.patterns.circular.csv >> output/transactions.csv
-perl -MList::Util=shuffle -e 'print shuffle(<STDIN>);' < data/nodes.transactions.patterns.flow.csv >> output/transactions.csv
-cat data/nodes.transactions.client-sourcing.csv >> output/transactions.csv
-perl -MList::Util=shuffle -e 'print shuffle(<STDIN>);' < data/nodes.transactions.company-sourcing.csv >> output/transactions.csv
-perl -MList::Util=shuffle -e 'print shuffle(<STDIN>);' < data/nodes.transactions.patterns.time.csv >> output/transactions.csv
+rm -rf $OUTPUT_DIR
+mkdir -p $OUTPUT_DIR
 
-cp data/nodes.atms.csv output/atms.csv
-cp data/nodes.clients.csv output/clients.csv
-cp data/nodes.companies.csv output/companies.csv
+echo "id,source,target,date,time,amount,currency" >> $OUTPUT_DIR/transactions.csv
+
+perl -MList::Util=shuffle -e 'print shuffle(<STDIN>);' < $DATA_DIR/nodes.transactions.patterns.circular.csv >> $OUTPUT_DIR/transactions.csv
+perl -MList::Util=shuffle -e 'print shuffle(<STDIN>);' < $DATA_DIR/nodes.transactions.patterns.flow.csv >> $OUTPUT_DIR/transactions.csv
+cat $DATA_DIR/nodes.transactions.client-sourcing.csv >> $OUTPUT_DIR/transactions.csv
+perl -MList::Util=shuffle -e 'print shuffle(<STDIN>);' < $DATA_DIR/nodes.transactions.company-sourcing.csv >> $OUTPUT_DIR/transactions.csv
+perl -MList::Util=shuffle -e 'print shuffle(<STDIN>);' < $DATA_DIR/nodes.transactions.patterns.time.csv >> $OUTPUT_DIR/transactions.csv
+
+cp $DATA_DIR/nodes.atms.csv $OUTPUT_DIR/atms.csv
+cp $DATA_DIR/nodes.clients.csv $OUTPUT_DIR/clients.csv
+cp $DATA_DIR/nodes.companies.csv $OUTPUT_DIR/companies.csv

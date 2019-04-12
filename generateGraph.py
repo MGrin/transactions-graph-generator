@@ -1,6 +1,9 @@
 import argparse
 import math
 import threading
+import time
+import os
+
 from generator.generateNodes import generateNodes
 from generator.generateEdges import generateEdges
 from generator.generateTransactions import generateTransactions
@@ -38,23 +41,25 @@ args = parser.parse_args()
 ### ### ###
 
 ### Variables definition ###
+dataDir = args.data + '/' + time.strftime("%H:%M:%S_%d-%m-%Y")
+os.makedirs(dataDir)
 
 files = {
-	"client" : args.data + '/nodes.clients.csv',
-	"company" : args.data + '/nodes.companies.csv',
-	"atm" : args.data + '/nodes.atms.csv',
+	"client" : dataDir + '/nodes.clients.csv',
+	"company" : dataDir + '/nodes.companies.csv',
+	"atm" : dataDir + '/nodes.atms.csv',
 
-	"clients-clients-edges": args.data + '/edges.client-client.csv',
-	"clients-companies-edges": args.data + '/edges.client-company.csv',
-	"clients-atms-edges": args.data + '/edges.client-atm.csv',
-	"companies-clients-edges": args.data + '/edges.company-client.csv',
+	"clients-clients-edges": dataDir + '/edges.client-client.csv',
+	"clients-companies-edges": dataDir + '/edges.client-company.csv',
+	"clients-atms-edges": dataDir + '/edges.client-atm.csv',
+	"companies-clients-edges": dataDir + '/edges.company-client.csv',
 
-	"clients-sourcing-transactions": args.data + '/nodes.transactions.client-sourcing.csv',
-	"companies-sourcing-transactions": args.data + '/nodes.transactions.company-sourcing.csv',
+	"clients-sourcing-transactions": dataDir + '/nodes.transactions.client-sourcing.csv',
+	"companies-sourcing-transactions": dataDir + '/nodes.transactions.company-sourcing.csv',
 
-	"flow-pattern-transactions": args.data + '/nodes.transactions.patterns.flow.csv',
-	"circular-pattern-transactions": args.data + '/nodes.transactions.patterns.circular.csv',
-	"time-pattern-transactions": args.data + '/nodes.transactions.patterns.time.csv'
+	"flow-pattern-transactions": dataDir + '/nodes.transactions.patterns.flow.csv',
+	"circular-pattern-transactions": dataDir + '/nodes.transactions.patterns.circular.csv',
+	"time-pattern-transactions": dataDir + '/nodes.transactions.patterns.time.csv'
 }
 
 statistics = {
