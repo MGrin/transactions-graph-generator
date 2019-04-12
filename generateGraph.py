@@ -41,7 +41,7 @@ args = parser.parse_args()
 ### ### ###
 
 ### Variables definition ###
-dataDir = args.data + '/' + time.strftime("%H:%M:%S_%d-%m-%Y")
+dataDir = args.data + '/' + time.strftime("%H.%M.%S_%d-%m-%Y")
 os.makedirs(dataDir)
 
 files = {
