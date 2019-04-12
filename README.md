@@ -1,6 +1,8 @@
 # TRANSACTIONS-GRAPH-GENERATOR
 `Before starting, please manually create folders data, output and log in the root of the repo`
 
+[Medium](https://medium.com/@mgrin/how-to-generate-a-huge-financial-graph-with-money-laundering-patterns-5c3e490dd683) article.
+
 A big graph generator for transactions graph. As output you'll get:
 * a csv with transactions
 * 3 csv, one for clients, one for companies, one for ATMs, containing information about nodes of the graph
