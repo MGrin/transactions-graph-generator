@@ -11,14 +11,6 @@ Also generates some patterns inside the graph (FLow, Circle, Time patterns)
 
 Theoretically supports generation of any sized graph (kind of optimized, but not tested n graph more than 100000 nodes and > 10^9 transactions)
 
-# Resulting files structure
-The generator outputs its result to the data folder (can be changed using parameters). These are different files with data from different steps.
-To merge these files into 4 well defined csv, you have to run the transformation script from `scripts` folder:
-```
-./scripts/transform.sh
-```
-This will put 4 csv files concatenated by type, with randomized transactions (not to have them one after another, for example for patterns all transactions of one pattern follow each other before that script and are randomized after).
-
 # How to use
 ## Installation
 * You'll need `pipenv` installed
@@ -27,14 +19,14 @@ This will put 4 csv files concatenated by type, with randomized transactions (no
 
 ## Config-less
 ```
-pipenv run python generateGraph 100
+pipenv run python generateGraph.py 100
 ```
 Will generate a graph with 100 clients, 1 ATM and 2 companies.  Number of transactions is following a given distribution (look code to know more)
 
 ## Config-full
 All configurations are described in `generateGraph.py` file
 ```
-pipenv run python --data=./myOwnFolder --probs=0.01,0.001,0.03,0.005 --steps=nodes,edges,transactions,patterns --batch-size=5000 10000
+pipenv run python generateGraph.py --data=./myOwnFolder --probs=0.01,0.001,0.03,0.005 --steps=nodes,edges,transactions,patterns --batch-size=5000 10000
 ```
 * `--data` : folder to store generated data
 * `--probs` : list of connection creation probabilities. Format: client-client,client-company,client-atm,company-client

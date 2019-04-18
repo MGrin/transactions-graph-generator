@@ -48,4 +48,4 @@ if [[ $REPLY =~ ^[Nn]$ ]]; then
   exit 0;
 fi
 
-$PWD/scripts/startNeo4j.sh $DATA_DIR
+$PWD/scripts/neo4j/start.sh $DATA_DIR
