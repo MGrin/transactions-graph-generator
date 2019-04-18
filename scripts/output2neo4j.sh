@@ -43,7 +43,7 @@ else
   echo "Neo4j files are already generated"
 fi
 
-read -p "Do you want to start neo4j service (docker image, see script in ./scripts/startNeo4j.sh)?[Yn]" -n 1 -r
+read -p "Do you want to start neo4j service (docker image, see script in ./scripts/neo4j/start.sh)?[Yn]" -n 1 -r
 if [[ $REPLY =~ ^[Nn]$ ]]; then
   exit 0;
 fi

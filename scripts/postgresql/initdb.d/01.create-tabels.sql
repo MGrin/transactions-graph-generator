@@ -39,10 +39,9 @@ CREATE TABLE transactions (
   source CHAR(36) NOT NULL,
   "target" CHAR(36) NOT NULL,
   "date" DATE NOT NULL,
-  "time" CHAR(8) NOT NULL,
+  "time" CHAR(16) NOT NULL,
   amount REAL NOT NULL,
-  currency CHAR(3) NOT NULL,
+  currency CHAR(3),
 
-  CONSTRAINT transactions_pkey PRIMARY KEY (id),
-  
-)
+  CONSTRAINT transactions_pkey PRIMARY KEY (id)
+);
