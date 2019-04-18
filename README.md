@@ -36,8 +36,9 @@ pipenv run python generateGraph.py --data=./myOwnFolder --probs=0.01,0.001,0.03,
 # Transformation scripts
 There is a number of transformation scripts that transform generated data into something more usefull:
 
-* `output2csv.sh` - shuffles all transactions and concats them into one file. As a result you'll get 4 csv files with atms, clients, companies and transactions
-* `output2neo4j.sh` - generates folders and files needed for neo4j to import data. Also can start a neo4j docker image with already imported graph (`startNeo4j.sh` script)
+* `./scripts/output2csv.sh` - shuffles all transactions and concats them into one file. As a result you'll get 4 csv files with atms, clients, companies and transactions
+* `./scripts/output2neo4j.sh` - generates folders and files needed for neo4j to import data. Also can start a neo4j docker image with already imported graph
+* `./scripts/output2postgres.sh` - generates csv files using `output2csv.sh` script. Also can start a postgres docker image with imported data
 
 # Data and Patterns
 ## Client
