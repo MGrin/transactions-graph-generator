@@ -1,0 +1,33 @@
+{
+  "source": {
+    "file": {
+      "path": "/import/companies.csv"
+    }
+  },
+  "extractor": {
+    "csv": {
+      "separator": "|",
+      "nullValue": "None"
+    }
+  },
+  "transformers": [{
+    "vertex": {
+      "class": "Company"
+    }
+  }],
+  "loader": {
+    "orientdb": {
+      "dbURL": "plocal:/orientdb/databases/transactions",
+      "dbType": "graph",
+      "classes": [
+        { "name": "Company", "extends": "V" }
+      ], "indexes": [
+        {
+          "class": "Company",
+          "fields":["id:string"],
+          "type":"UNIQUE_HASH_INDEX"
+        }
+      ]
+    }
+  }
+}

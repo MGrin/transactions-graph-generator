@@ -9,7 +9,7 @@ A big graph generator for transactions graph. As output you'll get:
 
 Also generates some patterns inside the graph (FLow, Circle, Time patterns)
 
-Theoretically supports generation of any sized graph (kind of optimized, but not tested n graph more than 100000 nodes and > 10^9 transactions)
+Theoretically supports generation of any sized graph (kind of optimized, but not tested on graph more than 100000 nodes and > 10^9 transactions)
 
 # How to use
 ## Installation
@@ -39,6 +39,7 @@ There is a number of transformation scripts that transform generated data into s
 * `./scripts/output2csv.sh` - shuffles all transactions and concats them into one file. As a result you'll get 4 csv files with atms, clients, companies and transactions
 * `./scripts/output2neo4j.sh` - generates folders and files needed for neo4j to import data. Also can start a neo4j docker image with already imported graph
 * `./scripts/output2postgres.sh` - generates csv files using `output2csv.sh` script. Also can start a postgres docker image with imported data
+* `./scripts/output2orientdb.sh` - generates folders and files needed for orientdb to import data. Also can start an orientdb docker image with already imported data
 
 # Data and Patterns
 ## Client
