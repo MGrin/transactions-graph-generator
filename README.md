@@ -1,5 +1,5 @@
 # TRANSACTIONS-GRAPH-GENERATOR
-`Before starting, please manually create folders data, output and log in the root of the repo`
+`Before starting, please manually create folders data, output and logs in the root of the repo`
 
 [Medium](https://medium.com/@mgrin/how-to-generate-a-huge-financial-graph-with-money-laundering-patterns-5c3e490dd683) article.
 
@@ -94,7 +94,7 @@ Money starts from node A, goes through N nodes one by one and comes back to node
 * N (number of nodes in the circle): randint(1, 8)
 * Total payback (payed to intermediate nodes): 0.1 * random() * totalSum
 
-Again, transactions a delayed
+Again, transactions are delayed
 
 ### Time
 Exactly same amount goes from node A to node B multiple times separated by T equal time intervals. Parameters:
