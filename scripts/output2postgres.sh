@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Purpose of this script:
-# 1. Prepare files for mongo-import command
+# 1. Prepare files for postgres-import command
 
 if [ $# -eq 0 ]
   then

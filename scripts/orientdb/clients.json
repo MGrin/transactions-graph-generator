@@ -1,0 +1,33 @@
+{
+  "source": {
+    "file": {
+      "path": "/import/clients.csv"
+    }
+  },
+  "extractor": {
+    "csv": {
+      "separator": "|",
+      "nullValue": "None"
+    }
+  },
+  "transformers": [{
+    "vertex": {
+      "class": "Client"
+    }
+  }],
+  "loader": {
+    "orientdb": {
+      "dbURL": "plocal:/orientdb/databases/transactions",
+      "dbType": "graph",
+      "classes": [
+        { "name": "Client", "extends": "V" }
+      ], "indexes": [
+        {
+          "class": "Client",
+          "fields":["id:string"],
+          "type":"UNIQUE_HASH_INDEX"
+        }
+      ]
+    }
+  }
+}
