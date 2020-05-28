@@ -21,7 +21,8 @@ class Transaction(Node):
 
 		if random() < 0.05:
 			self.amount = self._numbers.between(100000, 1000000)
-		self.amount = npr.exponential(10)
+		else:
+			self.amount = npr.exponential(10)
 
 		if random() < 0.15:
 			self.currency = self._business.currency_iso_code()
