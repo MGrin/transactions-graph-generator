@@ -52,7 +52,7 @@ def generateFlowPattern(nodes):
   startIdx = __generateRandomIndex(nodes, participatingIndexes)
   endIdx = __generateRandomIndex(nodes, participatingIndexes)
 
-  totalSum = 50000 * random() + 50000 * random() # Total sum of starting transaction
+  totalSum = 5000 * random() + 5000 * random() # Total sum of starting transaction
   totalPayback = 0.1 * random() * totalSum # Total sum of payments to all of intermediat players
 
   numberOfLayers = randint(2, 6) # Magic limits, number of intermediat levels
@@ -148,7 +148,7 @@ def generateCircularPattern(nodes):
   startIdx = randint(0, len(nodes) - 1)
   participatingIndexes.add(startIdx)
 
-  totalSum = 50000 * random() + 50000 * random() # Total sum of starting transaction
+  totalSum = 5000 * random() + 5000 * random() # Total sum of starting transaction
   totalPayback = 0.1 * random() * totalSum # Total sum of payments to all of intermediat players
   remainingSum = totalSum
 
@@ -211,7 +211,7 @@ def generateTimePattern(nodes):
   endIdx = __generateRandomIndex(nodes, participatingIndexes)
 
   order = randint(5, 50)
-  amount = 50000 * random()
+  amount = 5000 * random()
 
   for i in range(order):
     t = Transaction(nodes[startIdx], nodes[endIdx])

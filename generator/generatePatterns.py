@@ -1,5 +1,5 @@
 import csv
-import threading
+import multiprocessing as mp
 import os
 from math import ceil
 from random import random
@@ -61,37 +61,32 @@ def generatePatterns(files, counts, batchSize):
 		for row in reader:
 			nodes.append(row[0])
 
-	# with open(files['atm'], 'r') as f:
-	# 	reader = csv.reader(f)
-	# 	next(reader)
-	# 	log("Loading atms...")
-	# 	for row in reader:
-	# 		atms.add(row[0])
-	flow = threading.Thread(target = lambda: __generatePatterns(
+
+	flow = mp.Process(target=__generatePatterns, args=(
 		nodes,
 		counts,
 		files['flow-pattern-transactions'],
 		batchSize,
 		generateFlowPattern,
-		label='Flow patterns'
+		'Flow patterns'
 	))
 
-	circular = threading.Thread(target = lambda: __generatePatterns(
+	circular = mp.Process(target=__generatePatterns, args=(
 		nodes,
 		counts,
 		files['circular-pattern-transactions'],
 		batchSize,
 		generateCircularPattern,
-		label='Circular patterns'
+		'Circular patterns'
 	))
 
-	time = threading.Thread(target = lambda: __generatePatterns(
+	time = mp.Process(target=__generatePatterns, args=(
 		nodes,
 		counts,
 		files['time-pattern-transactions'],
 		batchSize,
 		generateTimePattern,
-		label='Time patterns'
+		'Time patterns'
 	))
 
 	flow.start()

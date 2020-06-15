@@ -9,8 +9,8 @@ from generator.generateTransactions import generateTransactions
 from generator.generatePatterns import generatePatterns
 from generator.utils import log
 
-### Script arguments setup ###
-if __name__ == "__main__":
+def main():
+    ### Script arguments setup ###
     parser = argparse.ArgumentParser("Generate Graph")
     parser.add_argument("population", help="Population count of the graph", type=int)
     parser.add_argument("organizations", help="Organization count of the graph", type=int)
@@ -37,7 +37,7 @@ if __name__ == "__main__":
         help="Size of batch window to write",
         type=int,
         action="store",
-        default=10000,
+        default=100000,
     )
 
     args = parser.parse_args()
@@ -62,13 +62,11 @@ if __name__ == "__main__":
         "time-pattern-transactions": dataDir + "/nodes.transactions.patterns.time.csv",
     }
 
-    statistics = {"company": 0.025, "atm": 0.0005}
-
-    counts = {"client": args.population, "company": args.organizations, "atm": 0}
+    counts = {"client": args.population, "company": args.organizations}
     ### ### ###
 
-    probs = list(map(lambda x: float(x), args.probs.split(",")))
-    steps = set(map(lambda x: x, args.steps.split(",")))
+    probs = [float(x) for x in args.probs.split(",")]
+    steps = set(x for x in args.steps.split(","))
     batchSize = getattr(args, "batch_size")
 
     log("Steps to execute: " + str(steps))
@@ -94,11 +92,14 @@ if __name__ == "__main__":
         log('------------##############------------')
         log('Generating transactions')
         generateTransactions(files, batchSize)
-"""
-# Inserting patterns in edges
-if 'patterns' in steps:
-    log()
-    log('------------##############------------')
-    log('Generating patterns')
-    generatePatterns(files, counts, batchSize)
-"""
+        
+    # Inserting patterns in edges
+    if 'patterns' in steps:
+        log()
+        log('------------##############------------')
+        log('Generating patterns')
+        generatePatterns(files, counts, batchSize)
+
+
+if __name__ == "__main__":
+    main()

@@ -4,7 +4,7 @@ import os
 from models.Transaction import Transaction
 from .utils import writeBatch, log
 
-transactionHeaders = ['id', 'source', 'target', 'datetime', 'amount', 'currency']
+transactionHeaders = ['id', 'source', 'target', 'date', 'time', 'amount', 'currency']
 
 def __generateTransactions(edges, transactionsFile, batchSize, label):
     try:
@@ -17,7 +17,7 @@ def __generateTransactions(edges, transactionsFile, batchSize, label):
     with open(transactionsFile, 'a') as transactions:
         batch = []
         sourceNodesCount = 0
-        transactions.write("|".join(transactionHeaders) + "\n")
+        # transactions.write("|".join(transactionHeaders) + "\n")  # Can't have the header if we take transactions from every file
 
         for sourceNode, targets in edges.items():
             sourceNodesCount += 1
