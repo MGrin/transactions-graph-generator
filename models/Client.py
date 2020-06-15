@@ -7,9 +7,10 @@ class Client(Node):
 	_person = Person()
 	_adresss = Address()
 
-	def __init__(self):
+	def __init__(self, _id: int):
 		self.__type = 'Client'
-		self.id = uuid4()
+		self.id = _id
+		'''
 		self.first_name = self._person.name()
 		self.last_name = self._person.surname()
 		self.age = self._person.age()
@@ -28,3 +29,4 @@ class Client(Node):
 		self.postal_code = self._adresss.postal_code()
 		self.country = self._adresss.country()
 		self.city = self._adresss.city()
+		'''

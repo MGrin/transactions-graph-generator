@@ -3,6 +3,7 @@ import math
 import threading
 import time
 import os
+import sys
 
 from generator.generateNodes import generateNodes
 from generator.generateEdges import generateEdges
@@ -13,6 +14,7 @@ from generator.utils import log
 ### Script arguments setup ###
 parser = argparse.ArgumentParser("Generate Graph")
 parser.add_argument("population", help="Population count of the graph", type=int)
+parser.add_argument("organizations", help="Organization count of the graph", type=int)
 parser.add_argument("--data", help="path to the data folder", type=str,  action="store", default='./data')
 parser.add_argument(
 	"--probs",
@@ -69,8 +71,8 @@ statistics = {
 
 counts = {
 	"client" : args.population,
-	"company" : math.ceil(statistics['company'] * args.population),
-	"atm" : math.ceil(statistics['atm'] * args.population)	,
+	"company" : args.organizations,
+	"atm" : 0
 }
 ### ### ###
 
@@ -80,7 +82,6 @@ batchSize = getattr(args, 'batch_size')
 
 log('Steps to execute: ' + str(steps))
 
-
 # Nodes generation process
 if 'nodes' in steps:
 	log()
@@ -88,13 +89,14 @@ if 'nodes' in steps:
 	log('Generating nodes')
 	generateNodes(files, counts, batchSize)
 
+
 # Edges generation processes
 if 'edges' in steps:
 	log()
 	log('------------##############------------')
 	log('Generating edges')
 	generateEdges(files, probs, batchSize)
-
+'''
 # Transactions generation processes
 if 'transactions' in steps:
 	log()
@@ -108,3 +110,4 @@ if 'patterns' in steps:
 	log('------------##############------------')
 	log('Generating patterns')
 	generatePatterns(files, counts, batchSize)
+'''

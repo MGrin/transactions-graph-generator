@@ -7,9 +7,10 @@ class Company(Node):
 	_business = Business()
 	_address = Address()
 
-	def __init__(self):
+	def __init__(self, _id: int):
 		self.__type = 'Company'
-		self.id = uuid4()
+		self.id = _id + 50000
+		'''
 		self.type = self._business.company_type()
 		self.name = self._business.company()
 		self.country = self._address.country()

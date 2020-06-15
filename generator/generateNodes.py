@@ -5,9 +5,9 @@ from models.Company import Company
 from models.ATM import ATM
 from .utils import writeBatch, log
 
-clientHeaders = ['id', 'first_name', 'last_name', 'age', 'email', 'occupation', 'political_views', 'nationality', 'university', 'academic_degree', 'address', 'postal_code', 'country', 'city']
-companyHeaders = ['id', 'type', 'name', 'country']
-atmHeaders = ['id', 'latitude', 'longitude']
+clientHeaders = ['id']
+companyHeaders = ['id']
+#atmHeaders = ['id', 'latitude', 'longitude']
 
 def __generateModel(count, file, header, Model, modelname, batchSize, verbose=True):
 	try:
@@ -20,7 +20,7 @@ def __generateModel(count, file, header, Model, modelname, batchSize, verbose=Tr
 
 		file.write('|'.join(header) + '\n')
 		for i in range(0, count):
-			c = Model()
+			c = Model(i)
 			batch.append(c.toRow(header))
 
 			if verbose and i % batchSize == 0:
@@ -50,6 +50,7 @@ def generateNodes(files, counts, batchSize):
 		modelname='Company',
 		batchSize=batchSize
 	))
+	"""
 	atmsProcess = threading.Thread(target=lambda : __generateModel(
 		counts["atm"],
 		files["atm"],
@@ -58,11 +59,12 @@ def generateNodes(files, counts, batchSize):
 		modelname='ATM',
 		batchSize=batchSize
 	))
+	"""
 
 	clientsProcess.start()
 	companiesProcess.start()
-	atmsProcess.start()
+	#atmsProcess.start()
 
 	clientsProcess.join()
 	companiesProcess.join()
-	atmsProcess.join()
+	#atmsProcess.join()
