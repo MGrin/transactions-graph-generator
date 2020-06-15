@@ -1,6 +1,6 @@
 import csv
 import os
-import threading
+import multiprocessing as mp
 import math
 from random import random
 from .utils import writeBatch, log
@@ -49,7 +49,6 @@ def generateEdges(files, probs, batchSize):
 	print("Reading nodes in memory")
 	clients = set()
 	companies = set()
-	atms = set()
 
 	with open(files['client'], 'r') as f:
 		reader = csv.reader(f, delimiter="|")
@@ -65,52 +64,35 @@ def generateEdges(files, probs, batchSize):
 		for row in reader:
 			companies.add(row[0])
 
-	with open(files['atm'], 'r') as f:
-		reader = csv.reader(f, delimiter="|")
-		next(reader)
-		log("Loading atms...")
-		for row in reader:
-			atms.add(row[0])
-
-	clientClientEdgesProcess = threading.Thread(target=lambda: __generateEdges(
+	clientClientEdgesProcess = mp.Process(target=__generateEdges, args=(
 		clients,
 		clients,
 		files['clients-clients-edges'],
 		probs[0],
 		batchSize,
-		label='client->client'
-	))
-	clientCompanyEdgesProcess = threading.Thread(target=lambda: __generateEdges(
+		"client->client"))
+
+	clientCompanyEdgesProcess = mp.Process(target=__generateEdges, args=(
 		clients,
 		companies,
 		files['clients-companies-edges'],
 		probs[1],
 		batchSize,
-		label='client->company'
-	))
-	clientAtmEdgesProcess = threading.Thread(target=lambda: __generateEdges(
-		clients,
-		atms,
-		files['clients-atms-edges'],
-		probs[2],
-		batchSize,
-		label='client->atm'
-	))
-	comapnyClientEdgesProcess = threading.Thread(target=lambda: __generateEdges(
+		"client->company"))
+
+	companyClientEdgesProcess = mp.Process(target=__generateEdges, args=(
 		companies,
 		clients,
 		files['companies-clients-edges'],
-		probs[3],
+		probs[2],
 		batchSize,
-		label='company->client'
+		'company->client'
 	))
 
 	clientClientEdgesProcess.start()
 	clientCompanyEdgesProcess.start()
-	clientAtmEdgesProcess.start()
-	comapnyClientEdgesProcess.start()
+	companyClientEdgesProcess.start()
 
 	clientClientEdgesProcess.join()
 	clientCompanyEdgesProcess.join()
-	clientAtmEdgesProcess.join()
-	comapnyClientEdgesProcess.join()
+	companyClientEdgesProcess.join()

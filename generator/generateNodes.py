@@ -1,5 +1,5 @@
 import os
-import threading
+import multiprocessing as mp
 from models.Client import Client
 from models.Company import Company
 from models.ATM import ATM
@@ -34,37 +34,27 @@ def __generateModel(count, file, header, Model, modelname, batchSize, verbose=Tr
 		log('TOTAL ' + modelname + ' of ' + str(count) + ' are generated')
 
 def generateNodes(files, counts, batchSize):
-	clientsProcess = threading.Thread(target=lambda : __generateModel(
+	clientsProcess = mp.Process(target=__generateModel, args=(
 		counts["client"],
 		files["client"],
-		header=clientHeaders,
-		Model=Client,
-		modelname='Client',
-		batchSize=batchSize
+		clientHeaders,
+		Client,
+		'Client',
+		batchSize,
+		True
 	))
-	companiesProcess = threading.Thread(target=lambda : __generateModel(
+	companiesProcess = mp.Process(target=__generateModel, args=(
 		counts["company"],
 		files["company"],
-		header=companyHeaders,
-		Model=Company,
-		modelname='Company',
-		batchSize=batchSize
+		companyHeaders,
+		Company,
+		'Company',
+		batchSize,
+		True
 	))
-	"""
-	atmsProcess = threading.Thread(target=lambda : __generateModel(
-		counts["atm"],
-		files["atm"],
-		header=atmHeaders,
-		Model=ATM,
-		modelname='ATM',
-		batchSize=batchSize
-	))
-	"""
 
 	clientsProcess.start()
 	companiesProcess.start()
-	#atmsProcess.start()
 
 	clientsProcess.join()
 	companiesProcess.join()
-	#atmsProcess.join()
