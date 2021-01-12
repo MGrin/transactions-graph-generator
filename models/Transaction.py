@@ -20,7 +20,7 @@ class Transaction(Node):
 		self.time = self._datetime.time()
 
 		if random() < 0.05:
-			self.amount = self._numbers.between(100000, 1000000)
+			self.amount = self._numbers.integer_number(100000, 1000000)
 		else:
 			self.amount = npr.exponential(10)
 
