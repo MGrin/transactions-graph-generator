@@ -14,18 +14,26 @@ DATA_DIR="$1"
 TIMESTAMP=`basename $DATA_DIR`
 OUTPUT_DIR=$PWD/output/neo4j/$TIMESTAMP
 
+# clean up for fresh import
+# This is due to some changes in version 4.x
+# Details can be found here: 
+# https://phpboyscout.uk/pre-populating-neo4j-using-kubernetes-init-containers-and-neo4j-admin-import/
+rm -rf $OUTPUT_DIR/data/databases/*
+rm -rf $OUTPUT_DIR/data/transactions/*
+
 echo "Starting Neo4J import"
 
+#modified syntax because of v4.x
 docker run \
   -v $OUTPUT_DIR/data:/data \
   -v $OUTPUT_DIR/import:/import \
   neo4j:latest \
-    bin/neo4j-admin import \
-      --nodes:ATMs /import/atms.csv \
-      --nodes:Clients /import/clients.csv \
-      --nodes:Companies /import/companies.csv \
-      --relationships /import/transactions.csv \
-      --delimiter "|"
+    bin/neo4j-admin import --database=neo4j\
+    	--nodes=ATMS=/import/atms.csv \
+    	--nodes=Clinets=/import/clients.csv \
+    	--nodes=Companies=/import/companies.csv \
+      	--relationships=/import/transactions.csv \
+      	--delimiter="|"
 
 echo "Starting Neo4J instance"
 docker run \
