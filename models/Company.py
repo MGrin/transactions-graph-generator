@@ -1,10 +1,10 @@
-from mimesis import Business, Address
+from mimesis import Finance, Address
 from random import random
 from uuid import uuid4
 from .Node import Node
 
 class Company(Node):
-	_business = Business()
+	_business = Finance()
 	_address = Address()
 
 	def __init__(self):

@@ -1,4 +1,4 @@
-from mimesis import Datetime, Numbers, Text, Business
+from mimesis import Datetime, Numeric, Text, Finance
 from random import random
 from numpy import random as npr
 from math import ceil
@@ -7,9 +7,9 @@ from .Node import Node
 
 class Transaction(Node):
 	_datetime = Datetime()
-	_numbers = Numbers()
+	_numbers = Numeric()
 	_text = Text()
-	_business = Business()
+	_business = Finance()
 
 	def __init__(self, sourceId, targetId):
 		self.__type = 'Transaction'
