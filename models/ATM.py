@@ -1,4 +1,4 @@
-from mimesis import Business, Address
+from mimesis import Address
 from random import random
 from uuid import uuid4
 from .Node import Node
