@@ -42,6 +42,7 @@ CREATE TABLE transactions (
   "time" CHAR(16) NOT NULL,
   amount REAL NOT NULL,
   currency CHAR(3),
+  pattern TEXT,
 
   CONSTRAINT transactions_pkey PRIMARY KEY (id)
 );
