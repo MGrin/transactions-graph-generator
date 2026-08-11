@@ -6,8 +6,13 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-"mimesis" = "*"
+# Tested against every mimesis from 5.0.0 to 21.0.0. 5.0.0 is the floor because
+# that release renamed Business -> Finance and Numbers -> Numeric.
+"mimesis" = ">=5.0,<22"
 "numpy" = "*"
+# mimesis imports typing_extensions but does not declare it as a dependency,
+# so importing mimesis fails without this. Remove once mimesis declares it.
+"typing_extensions" = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3"
