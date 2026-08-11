@@ -11,11 +11,12 @@ class Transaction(Node):
 	_text = Text()
 	_business = Finance()
 
-	def __init__(self, sourceId, targetId):
+	def __init__(self, sourceId, targetId, pattern=None):
 		self.__type = 'Transaction'
 		self.id = uuid4()
 		self.source = sourceId
 		self.target = targetId
+		self.pattern = pattern # None for background noise, otherwise the pattern that produced it
 		self.date = self._datetime.date(start=2015, end=2019)
 		self.time = self._datetime.time()
 

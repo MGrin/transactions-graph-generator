@@ -20,7 +20,7 @@ fi
 
 mkdir -p $OUTPUT_DIR
 
-echo "id|source|target|date|time|amount|currency" >> $OUTPUT_DIR/transactions.csv
+echo "id|source|target|date|time|amount|currency|pattern" >> $OUTPUT_DIR/transactions.csv
 
 perl -MList::Util=shuffle -e 'print shuffle(<STDIN>);' < $DATA_DIR/nodes.transactions.patterns.circular.csv >> $OUTPUT_DIR/transactions.csv
 perl -MList::Util=shuffle -e 'print shuffle(<STDIN>);' < $DATA_DIR/nodes.transactions.patterns.flow.csv >> $OUTPUT_DIR/transactions.csv

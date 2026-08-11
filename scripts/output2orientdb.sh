@@ -16,7 +16,7 @@ OUTPUT_DIR=$PWD/output/orientdb/$TIMESTAMP
 if [ ! -d $OUTPUT_DIR ]; then
   mkdir -p $OUTPUT_DIR/{data,import,backup,etl}
 
-  TRANSACTIONS_HEADER="id|source|target|date|time|amount|currency"
+  TRANSACTIONS_HEADER="id|source|target|date|time|amount|currency|pattern"
   ATMS_HEADER="id|latitude|longitude"
   CLIENTS_HEADER="id|first_name|last_name|age|email|occupation|political_views|nationality|university|academic_degree|address|postal_code|country|city"
   COMPANIES_HEADER="id|type|name|country"

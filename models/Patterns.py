@@ -2,7 +2,7 @@ from .Transaction import Transaction
 from random import randint, random
 from datetime import timedelta
 
-transactionsHeader = ['id', 'source', 'target', 'date', 'time', 'amount', 'currency']
+transactionsHeader = ['id', 'source', 'target', 'date', 'time', 'amount', 'currency', 'pattern']
 
 def int2str(val):
   if val < 10: return '0' + str(val)
@@ -85,7 +85,7 @@ def generateFlowPattern(nodes):
       i = 0
 
       for node in patternStructure[layer]:
-        t = Transaction(nodes[startIdx], node)
+        t = Transaction(nodes[startIdx], node, pattern='flow')
         t.amount = amount
 
         if i == 0:
@@ -108,7 +108,7 @@ def generateFlowPattern(nodes):
       for sourceNode in patternStructure[layer-1]:
         for targetNode in patternStructure[layer]:
           amount = (remainingSum - totalPaybackPerLayer) / (prevLayerLength * currentLayerLength)
-          t = Transaction(sourceNode, targetNode)
+          t = Transaction(sourceNode, targetNode, pattern='flow')
           t.amount = amount
 
           currentDate = __updateCurrentDate(currentDate, delays)
@@ -124,7 +124,7 @@ def generateFlowPattern(nodes):
   lastLayerLength = len(patternStructure[numberOfLayers - 1])
   for node in patternStructure[numberOfLayers - 1]:
     amount = remainingSum / lastLayerLength
-    t = Transaction(node, nodes[endIdx])
+    t = Transaction(node, nodes[endIdx], pattern='flow')
     t.amount = amount
     
     currentDate = __updateCurrentDate(currentDate, delays)
@@ -163,7 +163,7 @@ def generateCircularPattern(nodes):
     stepPayback -= 0.1 * random() * stepPayback
 
     amount = remainingSum - stepPayback
-    t = Transaction(nodes[prevIdx], nodes[rndMiddlewareIdx])
+    t = Transaction(nodes[prevIdx], nodes[rndMiddlewareIdx], pattern='circular')
     t.amount = amount
     if step == 0:
       currentDate = t.date
@@ -184,7 +184,7 @@ def generateCircularPattern(nodes):
   stepPayback -= 0.1 * random() * stepPayback
 
   amount = remainingSum - stepPayback
-  t = Transaction(nodes[prevIdx], nodes[startIdx])
+  t = Transaction(nodes[prevIdx], nodes[startIdx], pattern='circular')
   t.amount = amount
   if step == 0:
     currentDate = t.date
@@ -214,7 +214,7 @@ def generateTimePattern(nodes):
   amount = 50000 * random()
 
   for i in range(order):
-    t = Transaction(nodes[startIdx], nodes[endIdx])
+    t = Transaction(nodes[startIdx], nodes[endIdx], pattern='time')
     t.amount = amount
 
     if i == 0:

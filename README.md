@@ -9,6 +9,11 @@ A big graph generator for transactions graph. As output you'll get:
 
 Also generates some patterns inside the graph (FLow, Circle, Time patterns)
 
+Every transaction carries a `pattern` column holding the ground truth label of the pattern that
+produced it (`flow`, `circular`, `time`), or `None` when it is background noise. The label survives
+the transformation scripts, so the shuffled `transactions.csv` and the neo4j / postgres / orientdb
+imports stay usable for training and evaluation.
+
 Theoretically supports generation of any sized graph (kind of optimized, but not tested on graph more than 100000 nodes and > 10^9 transactions)
 
 # How to use
@@ -77,6 +82,7 @@ There is a number of transformation scripts that transform generated data into s
 * time
 * amount
 * currency
+* pattern - ground truth label: `flow`, `circular`, `time`, or `None` for a background transaction that is not part of any pattern
 
 ## Patterns
 There are 3 types of pattern generated:

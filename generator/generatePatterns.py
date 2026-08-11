@@ -6,7 +6,7 @@ from random import random
 from .utils import writeBatch, log
 from models.Patterns import generateFlowPattern, generateCircularPattern, generateTimePattern
 
-transactionHeaders = ['id', 'source', 'target', 'date', 'time', 'amount', 'currency']
+transactionHeaders = ['id', 'source', 'target', 'date', 'time', 'amount', 'currency', 'pattern']
 
 def __generatePatterns(nodes, counts, transactionsFile, batchSize, patternsGenerator, label):
 	try:

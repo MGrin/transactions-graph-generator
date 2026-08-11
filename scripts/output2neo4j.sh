@@ -16,7 +16,7 @@ OUTPUT_DIR=$PWD/output/neo4j/$TIMESTAMP
 if [ ! -d $OUTPUT_DIR ]; then
   mkdir -p $OUTPUT_DIR/{data,import}
 
-  TRANSACTIONS_HEADER="id:string|source:START_ID|target:END_ID|date:date|time:time|amount:float|currency:string|:TYPE"
+  TRANSACTIONS_HEADER="id:string|source:START_ID|target:END_ID|date:date|time:time|amount:float|currency:string|pattern:string|:TYPE"
   ATMS_HEADER=":ID|latitude:float|longitude:float"
   CLIENTS_HEADER=":ID|first_name:LABEL|last_name:string|age:int|email:string|occupation:string|political_views:string|nationality:string|university:string|academic_degree:string|address:string|postal_code:string|country:string|city:string"
   COMPANIES_HEADER=":ID|type:string|name:LABEL|country:string"

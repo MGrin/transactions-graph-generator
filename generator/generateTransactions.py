@@ -4,7 +4,7 @@ import os
 from models.Transaction import Transaction
 from .utils import writeBatch, log
 
-transactionHeaders = ['id', 'source', 'target', 'date', 'time', 'amount', 'currency']
+transactionHeaders = ['id', 'source', 'target', 'date', 'time', 'amount', 'currency', 'pattern']
 
 def __generateTransactions(edges, transactionsFile, batchSize, label):
 	try:
