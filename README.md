@@ -18,7 +18,7 @@ Theoretically supports generation of any sized graph (kind of optimized, but not
 
 # How to use
 ## Installation
-* You'll need `pipenv` installed
+* You'll need Python >= 3.10 and `pipenv` installed
 * `pipenv install`
 * `mkdir -p data output logs`
 
